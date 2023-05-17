@@ -22,7 +22,7 @@ CREATE TABLE usuario (
   Nombres  VARCHAR(50) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
   Correo VARCHAR(50) NOT NULL,
-  Contraseña VARCHAR(50) NOT NULL,
+  Clave VARCHAR(50) NOT NULL,
   PRIMARY KEY (IDUsuario)
 );
 /*INSERTAMOS LOS DATOS A LAS TABLAS*/
