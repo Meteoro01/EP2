@@ -71,8 +71,8 @@ public class Tarea {
         System.out.println("Ingrese la descripción de la tarea:");
         String descripcionTarea = scanner.nextLine();
         System.out.println("Ingrese la fecha de vencimiento de la tarea (formato: yyyy-mm-dd):");
-        String fechaVencimientoStr = scanner.nextLine();
-        Date fechaVencimiento = Date.valueOf(fechaVencimientoStr);
+        String fechaVencimiento = scanner.nextLine();
+
 
         Statement statement = conn.createStatement();
         String query = "SELECT MAX(idTarea) FROM tareas";
@@ -86,14 +86,15 @@ public class Tarea {
         int nuevoIdTarea = ultimoId + 1;
         // 3. Insertar la nueva tarea en la tabla Tareas
         String sql = "INSERT INTO Tareas (IdTarea, IdProyecto, IdUsuario,  TituloTarea, DescripcionTarea, FechaVencimiento, Estado) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, )";
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1, nuevoIdTarea);
         pstmt.setInt(2, idProyecto);
         pstmt.setInt(3, idUsuario);
         pstmt.setString(4, tituloTarea);
         pstmt.setString(5, descripcionTarea);
-        pstmt.setDate(6, fechaVencimiento);
+        pstmt.setString(6, fechaVencimiento);
         pstmt.setString(7, "En progreso");
         int filasAfectadas = pstmt.executeUpdate();
 
